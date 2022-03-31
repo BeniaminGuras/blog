@@ -144,13 +144,13 @@ function generateAuthorLinks(){
   const articles = document.querySelectorAll(optArticleSelector);
   for(let article of articles){
     const authorWrap = article.querySelector(optAuthorSelector);
-    console.log('siemaaaaaaaaa', authorWrap);
+    console.log('authorWrap', authorWrap);
     let htmlLink = 'by ';
     const author = article.getAttribute('data-author');
     const html = '<a href="#' + author + '">' + author + '</a>';
-    console.log('naraaaaaaa', html);
+    console.log('html', html);
     htmlLink = htmlLink + html; 
-    console.log('asdasdadas', htmlLink);
+    console.log('htmlLink', htmlLink);
     authorWrap.insertAdjacentHTML('beforeend', htmlLink);
   }
   
