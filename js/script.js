@@ -1,5 +1,11 @@
 'use strict';
 
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list',
+  optAuthorSelector = '.post-author',
+  optTagsListSelector = '.tags.list';
 
 function titleClickHandler(event) {
   event.preventDefault();
@@ -34,15 +40,6 @@ function titleClickHandler(event) {
 
 }
 
-
-
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list',
-  optAuthorSelector = '.post-author';
-
-
 function generateTitleLinks(customSelector = '') {
   /* remove contents of titleList */
   const titleList = document.querySelector(optTitleListSelector);
@@ -69,6 +66,7 @@ function generateTitleLinks(customSelector = '') {
 }
 
 function generateTags() {
+  let allTags = [];
   const articles = document.querySelectorAll(optArticleSelector);
   for (let article of articles) {
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
@@ -78,17 +76,20 @@ function generateTags() {
     const tags = dataTags.split(' ');
 
     for (let tag of tags) {
-      const html = '<li><span><a href="#' + 'tag-' + tag + '">' + tag + '\xa0' + '</a></li>';
+      const html = '<li><span><a href="#' + 'tag-' + tag + '">' + tag + '</a></li>';
       console.log(html);
       htmlLink = htmlLink + html;
+      console.log('htmlLink: ', htmlLink);
+      if(allTags.indexOf(html) == -1){
+        /* [NEW] add generated code to allTags array */
+        allTags.push(html);
+      }
     }
     tagsWrapper.insertAdjacentHTML('beforeend', htmlLink);
   }
-
+  const tagList = document.querySelector(optTagsListSelector);
+  tagList.innerHTML = allTags.join(' ');
 }
-
-generateTitleLinks();
-generateTags();
 
 function tagClickHandler(event) {
   event.preventDefault();
@@ -116,8 +117,6 @@ function tagClickHandler(event) {
 
 }
 
-
-
 function addClickListenersToTags() {
 
   /* find all links to tags */
@@ -137,8 +136,6 @@ function addClickListenersToTags() {
   }
 
 }
-
-addClickListenersToTags();
 
 function generateAuthorLinks(){
   const articles = document.querySelectorAll(optArticleSelector);
@@ -173,6 +170,9 @@ function addClickListenersToAuthors(){
   }
 }
 
+generateTitleLinks();
+generateTags();
+addClickListenersToTags();
 generateAuthorLinks();
 addClickListenersToAuthors();
 
