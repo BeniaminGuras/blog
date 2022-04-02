@@ -10,7 +10,7 @@
     "init:jstest": "npm init @eslint/config",
     "test": "npm run test:html && npm-run-all test:*",
     "test:html": "html-validate *.html",
-    "test:javascript": "./node_modules/.bin/eslint *.js",
+    "test:js": "eslint js/",
     "build": "npm-run-all build:* && npm run test",
     "build:sass": "sass --style=compressed --no-source-map sass:css",
     "build:autoprefixer": "postcss css/*.css --use autoprefixer -d css",

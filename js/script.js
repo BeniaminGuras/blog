@@ -6,10 +6,10 @@ function titleClickHandler(event) {
   const clickedElement = this;
   console.log(event);
   /* remove class 'active' from all article links  */
-  const activeLinks = document.querySelectorAll(".titles a.active");
+  const activeLinks = document.querySelectorAll('.titles a.active');
   for (let activeLink of activeLinks) {
     activeLink.classList.remove('active');
-    console.log('Klasa acrive usunieta')
+    console.log('Klasa acrive usunieta');
   }
 
   /* add class 'active' to the clicked link */
@@ -39,7 +39,7 @@ function titleClickHandler(event) {
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = ".post-tags .list",
+  optArticleTagsSelector = '.post-tags .list',
   optAuthorSelector = '.post-author';
 
 
@@ -59,7 +59,7 @@ function generateTitleLinks(customSelector = '') {
     console.log(articleTitle);
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
     console.log('abc: ', linkHTML);
-    titleList.insertAdjacentHTML("beforeend", linkHTML);
+    titleList.insertAdjacentHTML('beforeend', linkHTML);
   }
 
   const links = document.querySelectorAll('.titles a');
@@ -122,7 +122,7 @@ function addClickListenersToTags() {
 
   /* find all links to tags */
 
-  const tagsLinks = document.querySelectorAll(".post-tags .list li span a");
+  const tagsLinks = document.querySelectorAll('.post-tags .list li span a');
 
   /* START LOOP: for each link */
 
@@ -150,7 +150,7 @@ function generateAuthorLinks(){
     const html = '<a href="#' + author + '">' + author + '</a>';
     console.log('html', html);
     htmlLink = htmlLink + html; 
-    console.log('htmlLink', htmlLink);
+    console.log('htmlLinkS', htmlLink);
     authorWrap.insertAdjacentHTML('beforeend', htmlLink);
   }
   
