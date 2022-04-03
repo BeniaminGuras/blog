@@ -69,7 +69,7 @@ function generateTitleLinks(customSelector = '') {
 
 function calculateTagsParams(tags){
   const minMax = {
-    lowest: 5,
+    lowest: 99999,
     heights: 0,
   };
   for(let tag in tags){
@@ -109,6 +109,9 @@ function generateTags() {
     const tags = dataTags.split(' ');
 
     for (let tag of tags) {
+      const html = '<li><span><a href="#' + 'tag-' + tag + '">' + tag + '\xa0' + '</a></li>';
+      console.log(html);
+      htmlLink = htmlLink + html;
       if(!allTags.hasOwnProperty(tag)){
         allTags[tag] = 1; 
       } else {
@@ -121,7 +124,7 @@ function generateTags() {
   console.log('tagsParams', tagsParams);
   let allTagsHTML = '';
   for(let tag in allTags){
-    allTagsHTML += '<li><a href="#' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag +'</a></li>';
+    allTagsHTML += '<li><a href="#' + tag + '"class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag +'</a></li>';
     console.log('allTagsHTML', allTagsHTML);
   }
   const tagList = document.querySelector(optTagsListSelector);

@@ -151,26 +151,31 @@ a {
 
 
 .tags {
+  text-align: center;
+    li {
+      display: inline-block;
+      padding: 6px;
 
-  li {
-    display: inline-block;
-    padding: 3px;
+      .tag-size-1 {
+        font-size: 1rem;
+        color: red;
+      }
 
-    .tag-size-1 {
-      font-size: 1rem;
+      .tag-size-2 { 
+        font-size: 1.4rem;
+        color: blue;
+      }
+      .tag-size-3 { 
+        font-size: 1.9rem;
+        color: green;
+      }
+      .tag-size-4 { 
+        font-size: 2.5rem;
+        color: darkblue;
+      }
+      .tag-size-5 { 
+        font-size: 2.9rem;
+        color:#8DD67E;
+      }
     }
-
-    .tag-size-2 { 
-      font-size: 1.4rem;
-    }
-    .tag-size-3 { 
-      font-size: 1.9rem;
-    }
-    .tag-size-4 { 
-      font-size: 2.5rem;
-    }
-    .tag-size-5 { 
-      font-size: 2.9rem;
-    }
-  }
 }
