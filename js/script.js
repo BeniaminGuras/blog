@@ -128,7 +128,7 @@ function generateTags() {
   console.log('tagsParams', tagsParams);
   let allTagsHTML = '';
   for(let tag in allTags){
-    allTagsHTML += '<li><a href="#' + tag + '"class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag +'</a></li>';
+    allTagsHTML += '<li><a href="#tag-' + tag + '"class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag +'</a></li>';
     console.log('allTagsHTML', allTagsHTML);
   }
   const tagList = document.querySelector(opts.optTagsListSelector);
