@@ -6,8 +6,9 @@ const optArticleSelector = '.post',
   optArticleTagsSelector = '.post-tags .list',
   optAuthorSelector = '.post-author',
   optTagsListSelector = '.tags.list',
-  optCloudClassCount = 6,
-  optCloudClassPrefix = 'tag-size';
+  optCloudClassCount = 5,
+  optCloudClassPrefix = 'tag-size',
+  optAuthorsListSelector = '.list.authors';
 
 function titleClickHandler(event) {
   event.preventDefault();
@@ -179,6 +180,8 @@ function addClickListenersToTags() {
 
 function generateAuthorLinks(){
   const articles = document.querySelectorAll(optArticleSelector);
+  const allAuthors = {};
+  let authorHTML = '';
   for(let article of articles){
     const authorWrap = article.querySelector(optAuthorSelector);
     console.log('authorWrap', authorWrap);
@@ -189,8 +192,19 @@ function generateAuthorLinks(){
     htmlLink = htmlLink + html; 
     console.log('htmlLinkS', htmlLink);
     authorWrap.insertAdjacentHTML('beforeend', htmlLink);
+    if(!allAuthors.hasOwnProperty(author)){
+      allAuthors[author] = 1;
+    } else {
+      allAuthors[author]++; 
+    }
+    console.log('author', allAuthors);
+    
   }
-  
+
+  for(let author in allAuthors){
+    authorHTML += '<li><a href="#' + author + '">' +  author + ' (' + allAuthors[author] + ')' + '</a></li>';
+  }
+  document.querySelector(optAuthorsListSelector).innerHTML = authorHTML;
 }
 
 function authorClickHandler(event){
