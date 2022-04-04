@@ -178,17 +178,16 @@ function addClickListenersToTags() {
   /* find all links to tags */
 
   const tagsLinks = document.querySelectorAll('.post-tags .list li span a');
+  const tagsLinksSide = document.querySelectorAll('.list.tags li a');
 
   /* START LOOP: for each link */
 
   for (let tagLink of tagsLinks) {
-
-    /* add tagClickHandler as event listener for that link */
-
     tagLink.addEventListener('click', tagClickHandler);
+  }
 
-    /* END LOOP: for each link */
-
+  for(let tagLinkSide of tagsLinksSide){
+    tagLinkSide.addEventListener('click', tagClickHandler);
   }
 
 }
@@ -238,8 +237,12 @@ function authorClickHandler(event){
 
 function addClickListenersToAuthors(){
   const authorLinks = document.querySelectorAll('.post-author a' );
+  const authorLinksSide = document.querySelectorAll('.list.authors a');
   for(let authorLink of authorLinks){
     authorLink.addEventListener('click', authorClickHandler);
+  }
+  for(let authorLinkSide of authorLinksSide){
+    authorLinkSide.addEventListener('click', authorClickHandler);
   }
 }
 
