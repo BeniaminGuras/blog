@@ -1,14 +1,17 @@
 'use strict';
 
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list',
-  optAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags.list',
-  optCloudClassCount = 5,
-  optCloudClassPrefix = 'tag-size',
-  optAuthorsListSelector = '.list.authors';
+
+const opts = {
+  optArticleSelector: '.post',
+  optTitleSelector: '.post-title',
+  optTitleListSelector:  '.titles',
+  optArticleTagsSelector: '.post-tags .list',
+  optAuthorSelector: '.post-author',
+  optTagsListSelector: '.tags.list',
+  optCloudClassCount: 5,
+  optCloudClassPrefix: 'tag-size',
+  optAuthorsListSelector: '.list.authors',
+};
 
 function titleClickHandler(event) {
   event.preventDefault();
@@ -45,17 +48,17 @@ function titleClickHandler(event) {
 
 function generateTitleLinks(customSelector = '') {
   /* remove contents of titleList */
-  const titleList = document.querySelector(optTitleListSelector);
+  const titleList = document.querySelector(opts.optTitleListSelector);
   console.log(titleList);
   titleList.innerHTML = '';
-  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  const articles = document.querySelectorAll(opts.optArticleSelector + customSelector);
   console.log('articles: ', articles);
   
   for (let article of articles) {
     console.log('article: ', article);
     const articleId = article.getAttribute('id');
     console.log('articleId: ', articleId);
-    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+    const articleTitle = article.querySelector(opts.optTitleSelector).innerHTML;
     console.log(articleTitle);
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
     console.log('abc: ', linkHTML);
@@ -94,16 +97,16 @@ function calculateTagClass(count, params){
   const normalizedCount = count - params.lowest;
   const normalizedMax = params.heights - params.lowest;
   const percentage = normalizedCount / normalizedMax;
-  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+  const classNumber = Math.floor( percentage * (opts.optCloudClassCount - 1) + 1 );
   console.log('classNumber', classNumber);
-  return optCloudClassPrefix + '-' + classNumber; 
+  return opts.optCloudClassPrefix + '-' + classNumber; 
 }
 
 function generateTags() {
   let allTags = {};
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(opts.optArticleSelector);
   for (let article of articles) {
-    const tagsWrapper = article.querySelector(optArticleTagsSelector);
+    const tagsWrapper = article.querySelector(opts.optArticleTagsSelector);
     console.log(tagsWrapper);
     let htmlLink = '';
     const dataTags = article.getAttribute('data-tags');
@@ -128,7 +131,7 @@ function generateTags() {
     allTagsHTML += '<li><a href="#' + tag + '"class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag +'</a></li>';
     console.log('allTagsHTML', allTagsHTML);
   }
-  const tagList = document.querySelector(optTagsListSelector);
+  const tagList = document.querySelector(opts.optTagsListSelector);
   tagList.innerHTML = allTagsHTML;
 }
 
@@ -179,11 +182,11 @@ function addClickListenersToTags() {
 }
 
 function generateAuthorLinks(){
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(opts.optArticleSelector);
   const allAuthors = {};
   let authorHTML = '';
   for(let article of articles){
-    const authorWrap = article.querySelector(optAuthorSelector);
+    const authorWrap = article.querySelector(opts.optAuthorSelector);
     console.log('authorWrap', authorWrap);
     let htmlLink = 'by ';
     const author = article.getAttribute('data-author');
@@ -204,7 +207,7 @@ function generateAuthorLinks(){
   for(let author in allAuthors){
     authorHTML += '<li><a href="#' + author + '">' +  author + ' (' + allAuthors[author] + ')' + '</a></li>';
   }
-  document.querySelector(optAuthorsListSelector).innerHTML = authorHTML;
+  document.querySelector(opts.optAuthorsListSelector).innerHTML = authorHTML;
 }
 
 function authorClickHandler(event){
